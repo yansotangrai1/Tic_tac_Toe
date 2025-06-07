@@ -5,8 +5,9 @@ let msg = document.querySelector(".msg");
 let newButton = document.querySelector("#newButton");
 let winningPattern =[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6],];
 let turnO = true;
+let count = 0;
 const enableDisplay = (pOvalue)=>{
-    msg.innerText = `Winner is $(pOvalue.innerText)`;
+    msg.innerText = `Winner is ${pOvalue}`;
     msgContainer.classList.remove("hide");
 
 }
@@ -25,9 +26,13 @@ const checkWinner =()=>{
         }
     }
 }
+const forDraw = ()=>{
+    msg.innerText = "Game is Draw";
+    msgContainer.classList.remove("hide");
+}
 boxes.forEach((box)=>{
     box.addEventListener("click",()=>{
-        console.log("Box was clicked");
+       
         if(turnO){
             box.innerText ="O";
             turnO = false;
@@ -39,7 +44,10 @@ boxes.forEach((box)=>{
         box.disabled=true;
         
         checkWinner(); 
-
+        count++;
+        if(count >=9){
+            forDraw();
+        }
     });
    
 });
@@ -51,6 +59,7 @@ const resetGame = ()=>{
     }
     msgContainer.classList.add("hide");
 }
+
 
 resetButton.addEventListener("click",resetGame);
 newButton.addEventListener("click",resetGame);
