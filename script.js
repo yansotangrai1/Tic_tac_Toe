@@ -8,7 +8,7 @@ const checkWinner =()=>{
         let p2value= boxes[pattern[2]].innerText;
         if(pOvalue != "" && p1value != "" && p2value != ""){
             if(pOvalue === p1value && p1value === p2value){
-                console.log("winner");
+                console.log("winner",pOvalue);
             }
         }
     }
